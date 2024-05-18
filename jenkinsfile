@@ -4,12 +4,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh 'apt install python3'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                sh 'python3 -v'
             }
         }
        stage('Deploy') {
