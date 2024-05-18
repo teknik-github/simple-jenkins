@@ -14,7 +14,7 @@ pipeline {
         }
        stage('Deploy') {
         steps {
-               python3 static main.py
+               python3 main.py
             }
        }
     }
