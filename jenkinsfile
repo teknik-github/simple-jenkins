@@ -12,7 +12,10 @@ pipeline {
                 echo 'Testing..'
             }
         }
-       
-        }
+       stage('Deploy') {
+        steps {
+               python3 static main.py
+            }
+       }
     }
 }
