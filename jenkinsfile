@@ -1,6 +1,10 @@
 pipeline {
-    agent any
-
+    agent {
+        docker{
+            image 'python:latest'
+            args '-u root'
+        }
+    }
     stages {
         stage('Build') {
             steps {
@@ -11,11 +15,13 @@ pipeline {
             steps {
                 echo'testing'
             }
+        }       
+        stage('approval') {
+            message: 'lanjutkan ke tahap deploy', ok: 'proceed', submitter: 'user'
         }
-        
         stage('Deploy') {
-        steps {
-               sh 'python3 main.py'
+            steps {
+                sh 'python3 main.py'
             }
        }
     }
