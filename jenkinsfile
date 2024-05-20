@@ -12,12 +12,8 @@ pipeline {
                 echo'testing'
             }
         }
-        stage('Manual Approval') {
-            steps {
-                input message: 'Lanjutkan ke tahap deploy', ok: proceed, submitter: 'user'
-            }
-        }
-       stage('Deploy') {
+        
+        stage('Deploy') {
         steps {
                sh 'python3 main.py'
             }
