@@ -1,6 +1,10 @@
 pipeline {
-    agent any
-
+    agent {
+        docker {
+            image 'python:3.9'
+            args '-u root'
+        }
+    }
     stages {
         stage('Build') {
             steps {
@@ -10,6 +14,11 @@ pipeline {
         stage('Test') {
             steps {
                 echo'testing'
+            }
+        }
+        stage('Manual Approval') {
+            steps {
+                input message: 'Lanjutkan ke tahap deploy', ok: proceed, submitter: 'user'
             }
         }
        stage('Deploy') {
