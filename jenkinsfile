@@ -18,7 +18,7 @@ pipeline {
         }       
         stage('approval') {
             steps{
-                message: 'lanjutkan ke tahap deploy', ok: 'proceed', submitter: 'user'
+               input message: 'lanjutkan ke tahap deploy', ok: 'proceed', submitter: 'user'
             }
         }
         stage('Deploy') {
