@@ -1,33 +1,34 @@
 pipeline {
     agent {
-        docker{
-            image 'python'
+        docker {
+            image 'python:3'
             args '-u root'
         }
     }
     stages {
         stage('Build') {
             steps {
-                echo 'build'
+                echo 'Build step executed'
             }
         }
         stage('Test') {
             steps {
-                echo'testing'
+                echo 'Testing step executed'
             }
         }       
-        stage('approval') {
-            steps{
-               input message: 'lanjutkan ke tahap deploy', ok: 'proceed', submitter: 'user'
+        stage('Approval') {
+            steps {
+                input message: 'Lanjutkan ke tahap deploy?', ok: 'Proceed', submitter: 'admin' // Ganti dengan nama user Anda
             }
         }
         stage('Deploy') {
-            script {
-            sh '''
-                 #!/bin/bash
-                python3 main.py
-            '''
-         }
-       }
+            steps {
+                sh '''
+                    #!/bin/bash
+                    echo "Deploying the application"
+                    python3 main.py
+                '''
+            }
+        }
     }
 }
