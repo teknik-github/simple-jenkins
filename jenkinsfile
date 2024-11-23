@@ -24,13 +24,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                #!/bin/bash
-                set -x # Enable debug mode
-                whoami
-                pwd
-                ls -la
-                echo "Debugging environment variables:"
-                env
+                    #!/bin/bash
+                    echo "Deploying the application"
+                    python3 main.py
                 '''
             }
         }
