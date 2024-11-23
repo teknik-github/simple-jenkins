@@ -22,9 +22,12 @@ pipeline {
             }
         }
         stage('Deploy') {
-            steps {
-                sh 'python3 main.py'
-            }
+            script {
+            sh '''
+                 #!/bin/bash
+                python3 main.py
+            '''
+         }
        }
     }
 }
